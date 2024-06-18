@@ -50,18 +50,3 @@ def generate(prompt, length):
     result_path = "outputs/" + str(hash(prompt)) + ".mp4"
     process(trainer, opt, device, mean, std, prompt, int(length), result_path)
     return result_path
-
-demo = gr.Interface(
-    fn=generate,
-    inputs=["text", gr.Slider(20, 196, value=60)],
-    examples=[
-        ["the man throws a punch with each hand.", 58],
-        ["a person spins quickly and takes off running.", 29],
-        ["a person quickly waves with their right hand", 46],
-        ["a person performing a slight bow", 89],
-    ],
-    outputs="video",
-    title="MotionDiffuse: Text-Driven Human Motion Generation with Diffusion Model",
-    description="This is an interactive demo for MotionDiffuse. For more information, feel free to visit our project page(https://mingyuan-zhang.github.io/projects/MotionDiffuse.html).")
-
-demo.launch(enable_queue=True)
